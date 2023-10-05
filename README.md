@@ -24,7 +24,7 @@ Micopython's build script (Makefile or CMake) should run `gen_mpy.py` automatica
 - lv_binding_micropython is usually used as a git submodule of [lv_micropython](https://github.com/lvgl/lv_micropython) which builds Micropython + LVGL + lvgl-bindings, but can also be used on other forks of Micropython.
 
 It's worth noting that the Mircopython Bindings module (`lv_mpy.c`) is dependent on LVGL configuration.
-LVGL is configured by `lv_conf.h` where different objects and features could be enabled or disabled. LVGL bindings are generated only for the enabled objects and features. Changing `lv_conf.h` requires re running `gen_mpy.py`, therefore it's useful to run it automatically in the build script, as done by lv_micropython.
+LVGL is configured by `lv_conf.h` where different objects and features could be enabled or disabled. LVGL bindings are generated only for the enabled objects and features. Changing `lv_conf.h` requires re-running `gen_mpy.py`, therefore it's useful to run it automatically in the build script, as done by lv_micropython.
 
 ### Memory Management
 
@@ -96,7 +96,7 @@ The callback will receive a Blob which can be casted to the dict in the last arg
 
 As long as the convention above is followed, the lvgl Micropython binding script would automatically set and use `user_data` when callbacks are set and used.
 
-From the user perspective, any python callable object (such as python regular function, class function, lambda etc.) can be used as an lvgl callbacks. For example:
+From the user perspective, any python callable object (such as python regular function, class function, lambda etc.) can be used as an lvgl callback. For example:
 ```python
 lvgl.anim_set_custom_exec_cb(anim, lambda anim, val, obj=obj: obj.set_y(val))
 ```
@@ -126,7 +126,7 @@ The driver registration should eventually be performed in the Micropython script
 
 When creating a display or input LVGL driver, make sure you let the user **configure all parameters on runtime**, such as SPI pins, frequency, etc.
 Eventually the user would want to build the firmware once and use the same driver in different configuration without re-building the C project.
-This is different from standard LVGL C drivers where you usually use macros to configure parameters and require the user to re-build when any configurations changes.
+This is different from standard LVGL C drivers where you would usually use macros to configure parameters and require the user to re-build when any configurations changes.
 
 Example:
 
